@@ -1,0 +1,18 @@
+.container-fluid{
+	width: 90%;
+	padding-right: var(--bs-gutter-x,.75rem);
+	padding-left: var(--bs-gutter-x,.75rem);
+	margin-right: auto;
+	margin-left: auto;
+	height: 100vh;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: center;
+	}
+.container-fluid > .row {width:100%; display:flex;}
+.container-fluid > .row > *{ padding:15px; box-sizing: border-box;}
+table tr th {color: #d0d02f}
+table tr th::first-letter {text-transform: uppercase;}
+
+.user > p{font-size: 20px; font-weight: bold;}
