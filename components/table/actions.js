@@ -1,6 +1,6 @@
 
 
-const createElement = (text, onClick) => {
+export const createElement = (text, onClick) => {
   const element = document.createElement('button');
   element.addEventListener('click', onClick);
   element.innerText = text;
@@ -10,6 +10,8 @@ const createElement = (text, onClick) => {
 const renderEdit = onClick => createElement('Edit', onClick);
 const renderRemove = onClick => createElement('Remove', onClick);
 const renderBuy = onClick => createElement('Buy', onClick);
+export const renderNew = onClick => createElement('NewFlight', onClick);
+
 
 export const renderActions = (tableBody, isAdmin, {onRemove, onEdit, onBuy}, item) => {
   const td = document.createElement('td');

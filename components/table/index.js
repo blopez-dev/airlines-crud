@@ -32,6 +32,7 @@ export function renderTable(flights, isAdmin, actions) {
           <td>${item.departure}</td>
           <td>${item.price}</td>
           <td>${item.scale === false ? `and not make stops` : `make stops`}</td>`;
+    tableRow.setAttribute('id', item.id);
     renderActions(tableRow, isAdmin, actions, item);
     tableBody.appendChild(tableRow);
   });

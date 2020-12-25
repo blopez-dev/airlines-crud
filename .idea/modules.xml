@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/skylab-grud.iml" filepath="$PROJECT_DIR$/.idea/skylab-grud.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/skylab-crud.iml" filepath="$PROJECT_DIR$/.idea/skylab-crud.iml" />
     </modules>
   </component>
 </project>
