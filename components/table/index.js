@@ -6,36 +6,40 @@ export function renderTable(flights, isAdmin, actions) {
 
   // Create table elements
   const table = document.createElement('table');
-  table.classList.add('table', 'table-dark', 'table-striped')
+  table.classList.add('table', 'table-hover');
+  table.setAttribute('id', 'table-flights');
+  const tableHeader = document.createElement('thead');
+  tableHeader.classList.add('thead-dark');
   const tableBody = document.createElement('tbody');
   const tableRow = document.createElement('tr');
   //print body table
-  table.appendChild(tableBody);
+
   // add headers 'delete and update'
   headers.push('Actions');
   // print headers in a table
   headers.forEach(item => {
-    const tableHeader = document.createElement('th');
+    const tableHead = document.createElement('th');
     const tableHeaderContent = document.createTextNode(item);
-    tableHeader.appendChild(tableHeaderContent);
-    tableRow.appendChild(tableHeader);
+    tableHead.appendChild(tableHeaderContent);
+    tableRow.appendChild(tableHead);
   });
   // print table headers and body
-  tableBody.appendChild(tableRow);
-  tableBody.appendChild(tableRow);
+  tableHeader.appendChild(tableRow);
+  table.appendChild(tableHeader);
   // print table content in a columns
   flights.forEach((item) => {
     const tableRow = document.createElement('tr');
     tableRow.innerHTML = `
-          <td>${item.id}</td>
-          <td>${item.destination}</td>
-          <td>${item.departure}</td>
-          <td>${item.price}</td>
-          <td>${item.scale === false ? `and not make stops` : `make stops`}</td>`;
+          <td data-id="${item.id}">${item.id}</td>
+          <td data-destination="${item.destination}">${item.destination}</td>
+          <td data-departure ="${item.departure}">${item.departure}</td>
+          <td data-price="${item.price}">${item.price}</td>
+          <td data-sclae="${item.scale }">${item.scale === false ? `and not make stops` : `make stops`}</td>`;
     tableRow.setAttribute('id', item.id);
     renderActions(tableRow, isAdmin, actions, item);
     tableBody.appendChild(tableRow);
   });
+  table.appendChild(tableBody)
   // print table content in a columns
   front.appendChild(table);
 }

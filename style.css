@@ -1,4 +1,4 @@
-.container-fluid{
+#app{
 	width: 90%;
 	padding-right: var(--bs-gutter-x,.75rem);
 	padding-left: var(--bs-gutter-x,.75rem);
@@ -7,12 +7,23 @@
 	height: 100vh;
 	display: flex;
 	flex-flow: row wrap;
-	justify-content: center;
-	align-items: center;
+	justify-content: flex-start;
+	align-items: flex-start;
 	}
 .container-fluid > .row {width:100%; display:flex;}
 .container-fluid > .row > *{ padding:15px; box-sizing: border-box;}
+.btn{margin:5px 10px; font-weight: bold;}
+
+table{border: 1px solid darkgray;width: 90%;margin: 0 auto;text-align: center;}
 table tr th {color: #d0d02f}
 table tr th::first-letter {text-transform: uppercase;}
-
+table tr td{padding: 7px 12px !important;vertical-align: baseline !important;}
 .user > p{font-size: 20px; font-weight: bold;}
+
+.show {
+	display: table-row;
+}
+
+.hidden {
+	 display: none;
+ }

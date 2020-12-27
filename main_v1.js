@@ -1,8 +1,8 @@
 import {flights} from './data.js';
 import {loginUser} from './components/user.js';
 import {showInfoFlights, showFlightsScale, lastFlights, averageCost} from './components/toConsole.js';
-import {renderNew} from './components/table/actions.js'
-import {onRemove, onEdit, onBuy, onNew} from './components/table/crud.js';
+import {renderNew, renderFilter} from './components/table/actions.js'
+import {onRemove, onEdit, onBuy, onNew, onSelect} from './components/table/crud.js';
 import {renderTable} from './components/table';
 
 // Get info name from user
@@ -24,10 +24,17 @@ averageCost(flights);
 // Get isAdmin or not
 const isAdmin = confirm('is the admin of system?');
 if (isAdmin) {
-    alert('Welcome your admin panel flights, now, you can cte and modify all flights.');
-    document.getElementById('app').appendChild(renderNew(() => {onNew(flights)}))
-    // Render table with a data flights
-    renderTable(flights, isAdmin, { onRemove, onEdit, onBuy, onNew });
+    alert('Welcome your admin panel flights, now, you can create and delete all flights.');
+    document.getElementById('app').appendChild(renderNew(() => {
+            onNew(flights);
+            document.getElementById('table-flights').remove();
+            renderTable(flights, isAdmin, {onRemove, onEdit, onBuy, onNew});
+        })
+    )
+    renderTable(flights, isAdmin, {onRemove, onEdit, onBuy, onNew});
+} else {
+    renderFilter(flights);
+    renderTable(flights, isAdmin, {onRemove, onEdit, onBuy, onNew});
 }
 
 
