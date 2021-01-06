@@ -1,4 +1,5 @@
-
+import {renderTable} from "./index.js";
+import {onBuy, onNew, onRemove} from "./crud.js";
 
 export const createElement = (text, onClick, extraClass) => {
     const element = document.createElement('button');
@@ -27,16 +28,13 @@ export const createInput = () => {
     return inputSelect;
 }
 
-const renderEdit = onClick => createElement('Edit', onClick, 'btn-primary');
 const renderRemove = onClick => createElement('Remove', onClick, 'btn-danger');
 const renderBuy = onClick => createElement('Buy', onClick, 'btn-success');
 export const renderNew = onClick => createElement('NewFlight', onClick, 'btn-success');
 
-
-export const renderActions = (tableBody, isAdmin, {onRemove, onEdit, onBuy}, item) => {
+export const renderActions = (tableBody, isAdmin, {onRemove, onBuy}, item) => {
     const td = document.createElement('td');
     if (isAdmin) {
-        td.appendChild(renderEdit(() => onEdit(item)));
         td.appendChild(renderRemove(() => onRemove(item)));
     } else {
         td.appendChild(renderBuy(() => onBuy(item)));
@@ -44,30 +42,44 @@ export const renderActions = (tableBody, isAdmin, {onRemove, onEdit, onBuy}, ite
     tableBody.appendChild(td);
 }
 
-
-export const renderFilter = (flights) => {
+export const renderFilter = (flights, tableBody) => {
     const front = document.getElementById('app');
+    front.innerHTML = 'Filter by price:'
     front.appendChild(createInput());
 
-      const filterOptions = () => {
-      const option = document.getElementById("selectBy").value;
+    const filterOptions = () => {
+        const option = document.getElementById("selectBy").value;
 
         if (option === 'Cheaper') {
-        console.log('func')
-          flights.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
-          console.log(flights);
-        } else if (option === 'Expensive') {
-          flights.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
-          console.log(flights);
-        } else if (option === 'Equal') {
-          const flightsSame = flights.reduce((acc, item) => {
-            acc[item.price] = ++acc[item.price] || 0;
-            return acc;
-          }, {});
-          console.log(flights.filter(item => flightsSame[item.price]));
 
+            flights.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+            document.querySelector('tbody').remove();
+            flights.forEach((item) => {
+                const tableRow = document.createElement('tr');
+                tableRow.innerHTML = `
+          <td data-id="${item.id}">${item.id}</td>
+          <td data-destination="${item.destination}">${item.destination}</td>
+          <td data-departure ="${item.departure}">${item.departure}</td>
+          <td data-price="${item.price}">${item.price}</td>
+          <td data-sclae="${item.scale }">${item.scale === false ? `and not make stops` : `make stops`}</td>`;
+           tableRow.setAttribute('data-id',`${item.id}`)
+           tableBody += tableRow;
+            });
+
+
+        } else if (option === 'Expensive') {
+            const ExpensiveFlights = flights.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+
+        } else if (option === 'Equal') {
+            const flightsSame = flights.reduce((acc, item) => {
+                acc[item.price] = ++acc[item.price] || 0;
+                return acc;
+            }, {});
+
+            const EqualFlights = flights.filter(item => flightsSame[item.price]);
         }
-      };
+
+    };
     document.getElementById("selectBy").addEventListener("change", filterOptions);
 }
 
