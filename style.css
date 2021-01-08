@@ -19,11 +19,12 @@ table tr th {color: #d0d02f}
 table tr th::first-letter {text-transform: uppercase;}
 table tr td{padding: 7px 12px !important;vertical-align: baseline !important;}
 .user > p{font-size: 20px; font-weight: bold;}
-
 .show {
 	display: table-row;
 }
-
 .hidden {
 	 display: none;
  }
+select,
+select > option:first-child{color:grey !important;}
+select > option {color:#000;}

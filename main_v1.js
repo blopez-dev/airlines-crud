@@ -1,6 +1,6 @@
 import {flights} from './data.js';
 import {loginUser} from './components/user.js';
-import {showInfoFlights, showFlightsScale, lastFlights, averageCost} from './components/toConsole.js';
+import {showInfoFlights} from './components/toConsole.js';
 import {renderNew, renderFilter} from './components/table/actions.js'
 import {onRemove, onBuy, onNew} from './components/table/crud.js';
 import {renderTable} from './components/table';
@@ -10,15 +10,6 @@ loginUser();
 
 // Show flights info
 showInfoFlights(flights);
-
-// Show flights with scale
-showFlightsScale(flights);
-
-// show the destination of the last flights
-lastFlights(flights);
-
-// show average cost of flights
-averageCost(flights);
 
 
 // Get isAdmin or not

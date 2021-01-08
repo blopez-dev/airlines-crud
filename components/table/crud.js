@@ -1,6 +1,5 @@
 import {flights} from "../../data.js";
 
-
 export const onRemove = (item) => {
     flights.splice(item.id, 1);
     document.getElementById(`${item.id}`).remove();
@@ -31,14 +30,14 @@ export const onNew = (flights) => {
         const newFlightData = Object.assign({}, ...Object.entries({...keys}).map(
             ([index, key]) => ({[key]: formatDataFlights[index]})
         ))
-         console.log(newFlightData);
-
         flights.length <= 15 ? flights.push(newFlightData) : alert('more than 15 flights are forbiden');
 
     }
 }
 
+/*
 export const onSelect = () => {
     const selected = document.getElementById('selectBy').value;
     console.log('Select option:' + selected);
 }
+*/

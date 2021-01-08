@@ -13,6 +13,10 @@ export const createElement = (text, onClick, extraClass) => {
 export const createInput = () => {
     const inputSelect = document.createElement('select');
     inputSelect.setAttribute('id', 'selectBy');
+    const defaultOption = document.createElement('option');
+    defaultOption.setAttribute('data-value','default');
+    defaultOption.innerText = 'Choose option';
+
     const firstOption = document.createElement('option');
     firstOption.setAttribute('data-value', 'expensive');
     firstOption.innerText = 'Expensive';
@@ -22,6 +26,7 @@ export const createInput = () => {
     const thirdOption = document.createElement('option');
     thirdOption.setAttribute('data-value', 'equal');
     thirdOption.innerText = 'Equal';
+    inputSelect.appendChild(defaultOption);
     inputSelect.appendChild(firstOption);
     inputSelect.appendChild(secondOption);
     inputSelect.appendChild(thirdOption);
@@ -69,7 +74,6 @@ export const renderFilter = (flights, tableBody, isAdmin, actions) => {
             document.querySelector('table').remove();
             renderTable(equalFlight, isAdmin, {onRemove, onBuy, onNew});
         }
-
     };
     document.getElementById("selectBy").addEventListener("change", filterOptions);
 }
