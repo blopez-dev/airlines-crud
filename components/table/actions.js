@@ -1,5 +1,6 @@
 import {renderTable} from "./index.js";
 import {onBuy, onNew, onRemove} from "./crud.js";
+import {flights} from "../../data.js";
 
 export const createElement = (text, onClick, extraClass) => {
     const element = document.createElement('button');
@@ -42,7 +43,7 @@ export const renderActions = (tableBody, isAdmin, {onRemove, onBuy}, item) => {
     tableBody.appendChild(td);
 }
 
-export const renderFilter = (flights, tableBody) => {
+export const renderFilter = (flights, tableBody, isAdmin, actions) => {
     const front = document.getElementById('app');
     front.innerHTML = 'Filter by price:'
     front.appendChild(createInput());
@@ -51,32 +52,22 @@ export const renderFilter = (flights, tableBody) => {
         const option = document.getElementById("selectBy").value;
 
         if (option === 'Cheaper') {
-
             flights.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
-            document.querySelector('tbody').remove();
-            flights.forEach((item) => {
-                const tableRow = document.createElement('tr');
-                tableRow.innerHTML = `
-          <td data-id="${item.id}">${item.id}</td>
-          <td data-destination="${item.destination}">${item.destination}</td>
-          <td data-departure ="${item.departure}">${item.departure}</td>
-          <td data-price="${item.price}">${item.price}</td>
-          <td data-sclae="${item.scale }">${item.scale === false ? `and not make stops` : `make stops`}</td>`;
-           tableRow.setAttribute('data-id',`${item.id}`)
-           tableBody += tableRow;
-            });
-
+            document.querySelector('table').remove();
+            renderTable(flights, isAdmin, {onRemove, onBuy, onNew});
 
         } else if (option === 'Expensive') {
-            const ExpensiveFlights = flights.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
-
+            flights.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+            document.querySelector('table').remove();
+            renderTable(flights, isAdmin, {onRemove, onBuy, onNew});
         } else if (option === 'Equal') {
             const flightsSame = flights.reduce((acc, item) => {
                 acc[item.price] = ++acc[item.price] || 0;
                 return acc;
             }, {});
-
-            const EqualFlights = flights.filter(item => flightsSame[item.price]);
+            const equalFlight = flights.filter(item => flightsSame[item.price]);
+            document.querySelector('table').remove();
+            renderTable(equalFlight, isAdmin, {onRemove, onBuy, onNew});
         }
 
     };
