@@ -15,7 +15,6 @@ export const onBuy = (item) => {
 
 }
 
-
 export const onNew = (flights) => {
     const askByNewFlight = confirm('You want to create a new flight?')
 
@@ -34,10 +33,3 @@ export const onNew = (flights) => {
 
     }
 }
-
-/*
-export const onSelect = () => {
-    const selected = document.getElementById('selectBy').value;
-    console.log('Select option:' + selected);
-}
-*/
