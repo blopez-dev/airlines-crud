@@ -2,7 +2,7 @@ import {renderActions} from './actions.js';
 
 export function renderTable(flights, isAdmin, actions) {
   const front = document.getElementById('app');
-  const headers = Object.keys(flights[0]);
+ /* const headers = Object.keys(flights[0]);
 
   // Create table elements
   const table = document.createElement('table');
@@ -25,21 +25,30 @@ export function renderTable(flights, isAdmin, actions) {
   });
   // print table headers and body
   tableHeader.appendChild(tableRow);
-  table.appendChild(tableHeader);
+  table.appendChild(tableHeader);*/
   // print table content in a columns
+  const ticketsFlights = document.createElement('div');
+  ticketsFlights.classList.add('wrapper-ticket');
   flights.forEach((item) => {
-    const tableRow = document.createElement('tr');
-    tableRow.innerHTML = `
-          <td data-id="${item.id}">${item.id}</td>
-          <td data-destination="${item.destination}">${item.destination}</td>
-          <td data-departure ="${item.departure}">${item.departure}</td>
-          <td data-price="${item.price}">${item.price}</td>
-          <td data-sclae="${item.scale }">${item.scale === false ? `and not make stops` : `make stops`}</td>`;
-    tableRow.setAttribute('id', item.id);
-    renderActions(tableRow, isAdmin, actions, item);
-    tableBody.appendChild(tableRow);
+    const ticketFlight = document.createElement('div');
+    ticketFlight.classList.add('wrapper-ticket-flight');
+    ticketFlight.setAttribute('id', item.id);
+    ticketFlight.innerHTML = `
+        
+          <span class="destination" data-destination="${item.destination}">${item.destination}</span>
+          <span class="flight-route">
+           <span class="pointer-start"></span>
+            <span class="pointer-end"></span>
+            </span>
+          <span class="departure" data-departure ="${item.departure}"> ${item.departure}</span>
+          <span class="scale" data-sclae="${item.scale }">${item.scale === false ? `sin escalas` : `hace alguna escala`}</span>
+          <span class="price" data-price="${item.price}">${item.price} €</span> `;
+         renderActions(ticketFlight, isAdmin, actions, item);
+     
+    ticketsFlights.appendChild(ticketFlight);
   });
-  table.appendChild(tableBody)
-  // print table content in a columns
-  front.appendChild(table);
+  /*table.appendChild(tableBody)
+  // print table content in a columns*/
+  front.appendChild(ticketsFlights);
+  return ticketsFlights;
 }
