@@ -14,6 +14,7 @@ showInfoFlights(flights);
 
 // Get isAdmin or not
 const isAdmin = confirm('is the admin of system?');
+
 if (isAdmin) {
     alert('Welcome your admin panel flights, now, you can create and delete all flights.');
     document.getElementById('app').appendChild(renderNew(() => {
