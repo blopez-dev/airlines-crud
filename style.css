@@ -1,20 +1,21 @@
+*{padding:0; margin:0; box-sizing: border-box; list-style: none;}
+body{font-size:16px; font-family: 'Poppins', sans-serif;}
 #app{
-	width: 90%;
-	padding-right: var(--bs-gutter-x,.75rem);
-	padding-left: var(--bs-gutter-x,.75rem);
+	width: 100%;
 	margin-right: auto;
 	margin-left: auto;
-	height: 100vh;
-	display: flex;
-	flex-flow: row wrap;
-	justify-content: flex-start;
-	align-items: flex-start;
+
+	background-color:#f6f6f6;
 	}
 .container-fluid > .row {width:100%; display:flex;}
 .container-fluid > .row > *{ padding:15px; box-sizing: border-box;}
 .btn{margin:5px 10px; font-weight: bold;}
 
-table{border: 1px solid darkgray;width: 90%;margin: 0 auto;text-align: center;}
+.wrapper-carousel{display:block; position:relative; width:100%; height:60vh; overflow: hidden;}
+.wrapper-carousel .hero-image{display:block; position:absolute; top:-40%; max-width:100%;}
+.wrapper-container{margin:35px auto;}
+.wrapper-container .h2-title{font-size: 2.5em; line-height: 2.83em; text-align: center;}
+table{border: 1px solid darkgray;max-width:80%;margin: 0 auto;text-align: center;}
 table tr th {color: #d0d02f}
 table tr th::first-letter {text-transform: uppercase;}
 table tr td{padding: 7px 12px !important;vertical-align: baseline !important;}
@@ -28,3 +29,92 @@ table tr td{padding: 7px 12px !important;vertical-align: baseline !important;}
 select,
 select > option:first-child{color:grey !important;}
 select > option {color:#000;}
+
+.wrapper-ticket{position:relative; max-width:1200px; margin: 0 auto;display:flex; flex-flow: row wrap; justify-content: space-between; align-items: center;}
+.wrapper-ticket-flight{
+	width:100%;
+	border-radius: 1.5rem;
+	box-shadow: 5px 8px 33px #4647a052;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 3rem;
+	background-color: #fff;
+	margin-bottom: 2.5rem;
+}
+.wrapper-ticket-flight > span{display:block;}
+.pointer-start{
+	position:absolute;
+	top:50%;
+	width: 14px;
+	height: 14px;
+	border-radius:100%;
+	box-sizing: content-box;
+	transform:translate3d(-50%,-50%, 0);
+	background-color:#4647a0;
+	left:0;
+}
+.pointer-end{
+	position:absolute;
+	top:50%;
+	width: 14px;
+	height: 14px;
+	border-radius:100%;
+	box-sizing: content-box;
+	transform:translate3d(-50%,-50%, 0);
+	background-color:#4647a0;
+	right:-14px;
+}
+.flight-route{
+	position:relative;
+	display:block;
+	width:150px;
+	height: 5px;
+}
+.flight-route:before{
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 4px;
+	content: "";
+	background-color: #ffffff;
+	border-bottom: 2px dashed #4647a0;
+}
+.flight-route:after{}
+.destination, .departure, .scale, .price{font-size: 1.2em; color:#4647a0}
+.destination, .departure{font-weight: 500;}
+.scale{font-size: 1em;}
+.price{font-weight: 800;}
+.btn-buyFlight{color:#fff; background-color:#FA7A57; font-size: 1.2em; font-weight: 500;}
+.filter-wrapper{    position: relative;
+	max-width: 1200px;
+	margin: 50px auto;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-end;
+	align-items: center;}
+select#selectBy{margin: 0px 10px;
+	border-radius: 0.6rem;
+	padding: 0.5em 0.3em;
+	border: none;
+	color:#4647a0 !important;
+}
+.btn-login{
+	position: absolute;
+	top: 20px;
+	right: 18px;
+	border: 1px solid #fff;
+	color: #fff;
+	z-index: 99;
+	width: 150px;
+	height: 35px;
+	background-color: transparent;
+}
+.login-background{
+	width:100%;
+	min-height: 100vh;
+	background-image: url('./assets/heroimage.jpg');
+	background-size:cover;
+}
